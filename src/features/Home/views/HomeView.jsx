@@ -92,21 +92,87 @@ export default function HomeView() {
                 <p className="text-gray-600">Manage your files and documents in one place.</p>
               </div>
 
-              {/* Quick Stats or Summary */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-lg shadow-sm p-6">
-                  <h3 className="text-sm font-medium text-gray-500">Total Files</h3>
-                  <p className="text-2xl font-bold text-gray-800 mt-1">1,248</p>
+              {/* Storage Overview */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h3 className="text-lg font-medium text-gray-800 mb-4">Storage Overview</h3>
+                <div className="space-y-6">
+                  {/* Total Storage */}
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <div>
+                        <span className="text-2xl font-bold text-gray-900">45.2 GB</span>
+                        <span className="text-gray-500 ml-2">used of 100 GB</span>
+                      </div>
+                      <span className="text-sm font-medium bg-gray-100 px-3 py-1 rounded-full">45.2% used</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                      <div 
+                        className="bg-purple-600 h-2.5 rounded-full" 
+                        style={{ width: '45.2%' }}
+                      ></div>
+                    </div>
+                    <div className="flex justify-between text-sm text-gray-500 mt-1">
+                      <span>54.8 GB available</span>
+                      <span>100 GB total</span>
+                    </div>
+                  </div>
+
+                  {/* Storage by Category */}
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-medium text-gray-700">Storage by Category</h4>
+                    {[
+                      { type: 'images', label: 'Images', used: '28.5 GB', percentage: 28.5, color: 'purple' },
+                      { type: 'documents', label: 'Documents', used: '12.3 GB', percentage: 12.3, color: 'blue' },
+                      { type: 'media', label: 'Media', used: '3.2 GB', percentage: 3.2, color: 'green' },
+                      { type: 'others', label: 'Other Files', used: '1.2 GB', percentage: 1.2, color: 'yellow' }
+                    ].map((item) => (
+                      <div key={item.type} className="space-y-1">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-700">{item.label}</span>
+                          <span className="font-medium">{item.used} ({item.percentage}%)</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div 
+                            className={`h-1.5 rounded-full bg-${item.color}-500`}
+                            style={{ width: `${item.percentage}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="bg-white rounded-lg shadow-sm p-6">
-                  <h3 className="text-sm font-medium text-gray-500">Storage Used</h3>
-                  <p className="text-2xl font-bold text-gray-800 mt-1">45.2 GB</p>
-                  <p className="text-sm text-gray-500 mt-1">of 100 GB</p>
-                </div>
-                <div className="bg-white rounded-lg shadow-sm p-6">
-                  <h3 className="text-sm font-medium text-gray-500">Last Updated</h3>
-                  <p className="text-2xl font-bold text-gray-800 mt-1">Just now</p>
-                </div>
+              </div>
+
+              {/* Storage Categories */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  { type: 'images', label: 'Images', used: '28.5 GB', percentage: 28.5, color: 'purple', icon: <FiImage className="h-6 w-6 text-purple-600" /> },
+                  { type: 'documents', label: 'Documents', used: '12.3 GB', percentage: 12.3, color: 'blue', icon: <FiFile className="h-6 w-6 text-blue-600" /> },
+                  { type: 'media', label: 'Media', used: '3.2 GB', percentage: 3.2, color: 'green', icon: <FiFilm className="h-6 w-6 text-green-600" /> },
+                  { type: 'others', label: 'Other Files', used: '1.2 GB', percentage: 1.2, color: 'yellow', icon: <FiFolder className="h-6 w-6 text-yellow-600" /> }
+                ].map((item) => (
+                  <div key={item.type} className="bg-white rounded-lg shadow-sm p-6">
+                    <div className="flex items-center mb-4">
+                      <div className={`p-3 bg-${item.color}-100 rounded-lg mr-4`}>
+                        {item.icon}
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm text-gray-500">{item.label}</p>
+                        <p className="text-xl font-bold text-gray-800">{item.used}</p>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                          <div 
+                            className={`h-1.5 rounded-full bg-${item.color}-500`}
+                            style={{ width: `${item.percentage}%` }}
+                          ></div>
+                        </div>
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>{item.percentage}% used</span>
+                          <span>{item.used}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}
