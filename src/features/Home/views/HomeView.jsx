@@ -3,6 +3,7 @@ import { FiUpload, FiFile, FiImage, FiFilm, FiFolder, FiHome, FiMenu } from 'rea
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: <FiHome className="mr-3" /> },
+  { id: 'recent', label: 'Recent Files', icon: <FiFile className="mr-3" /> },
   { id: 'documents', label: 'Documents', icon: <FiFile className="mr-3" /> },
   { id: 'images', label: 'Images', icon: <FiImage className="mr-3" /> },
   { id: 'media', label: 'Media', icon: <FiFilm className="mr-3" /> },
@@ -91,10 +92,30 @@ export default function HomeView() {
                 <p className="text-gray-600">Manage your files and documents in one place.</p>
               </div>
 
-              {/* Recent Files Section */}
+              {/* Quick Stats or Summary */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white rounded-lg shadow-sm p-6">
+                  <h3 className="text-sm font-medium text-gray-500">Total Files</h3>
+                  <p className="text-2xl font-bold text-gray-800 mt-1">1,248</p>
+                </div>
+                <div className="bg-white rounded-lg shadow-sm p-6">
+                  <h3 className="text-sm font-medium text-gray-500">Storage Used</h3>
+                  <p className="text-2xl font-bold text-gray-800 mt-1">45.2 GB</p>
+                  <p className="text-sm text-gray-500 mt-1">of 100 GB</p>
+                </div>
+                <div className="bg-white rounded-lg shadow-sm p-6">
+                  <h3 className="text-sm font-medium text-gray-500">Last Updated</h3>
+                  <p className="text-2xl font-bold text-gray-800 mt-1">Just now</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeNav === 'recent' && (
+            <div className="space-y-6">
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-lg font-medium text-gray-900">Recent Files</h3>
+                  <h2 className="text-xl font-semibold text-gray-800">Recent Files</h2>
                   <button className="text-sm text-purple-600 hover:text-purple-700">View All</button>
                 </div>
                 
