@@ -120,36 +120,39 @@ export default function HomeView() {
                 </div>
               </div>
 
-              {/* Storage Categories */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  { type: 'images', label: 'Images', usedGB: 28.5, color: 'purple', icon: <FiImage className="h-6 w-6 text-purple-600" /> },
-                  { type: 'documents', label: 'Documents', usedGB: 12.3, color: 'blue', icon: <FiFile className="h-6 w-6 text-blue-600" /> },
-                  { type: 'media', label: 'Media', usedGB: 3.2, color: 'green', icon: <FiFilm className="h-6 w-6 text-green-600" /> },
-                  { type: 'others', label: 'Other Files', usedGB: 1.2, color: 'yellow', icon: <FiFolder className="h-6 w-6 text-yellow-600" /> }
-                ].map((item) => (
-                  <div key={item.type} className="bg-white rounded-lg shadow-sm p-6">
-                    <div className="flex items-center mb-4">
-                      <div className={`p-3 bg-${item.color}-100 rounded-lg mr-4`}>
-                        {item.icon}
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm text-gray-500">{item.label}</p>
-                        <p className="text-xl font-bold text-gray-800">{item.usedGB.toFixed(1)} GB</p>
-                        <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
-                          <div 
-                            className={`h-1.5 rounded-full bg-${item.color}-500`}
-                            style={{ width: `${item.usedGB}%` }}
-                          ></div>
+              {/* Storage by Category */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h3 className="text-lg font-medium text-gray-800 mb-4">Storage by Category</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    { type: 'images', label: 'Images', usedGB: 28.5, color: 'purple', icon: <FiImage className="h-6 w-6 text-purple-600" /> },
+                    { type: 'documents', label: 'Documents', usedGB: 12.3, color: 'blue', icon: <FiFile className="h-6 w-6 text-blue-600" /> },
+                    { type: 'media', label: 'Media', usedGB: 3.2, color: 'green', icon: <FiFilm className="h-6 w-6 text-green-600" /> },
+                    { type: 'others', label: 'Other Files', usedGB: 1.2, color: 'yellow', icon: <FiFolder className="h-6 w-6 text-yellow-600" /> }
+                  ].map((item) => (
+                    <div key={item.type} className="bg-gray-50 rounded-lg p-4 border border-gray-100">
+                      <div className="flex items-center">
+                        <div className={`p-3 bg-${item.color}-100 rounded-lg mr-4`}>
+                          {item.icon}
                         </div>
-                        <div className="flex justify-between text-xs text-gray-500 mt-1">
-                          <span>{item.usedGB}% of total</span>
-                          <span>{item.usedGB.toFixed(1)} GB of 100 GB</span>
+                        <div className="flex-1">
+                          <p className="text-sm text-gray-500">{item.label}</p>
+                          <p className="text-xl font-bold text-gray-800">{item.usedGB.toFixed(1)} GB</p>
+                          <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                            <div 
+                              className={`h-1.5 rounded-full bg-${item.color}-500`}
+                              style={{ width: `${item.usedGB}%` }}
+                            ></div>
+                          </div>
+                          <div className="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>{item.usedGB}% of total</span>
+                            <span>{item.usedGB.toFixed(1)} GB of 100 GB</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           )}
