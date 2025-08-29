@@ -25,7 +25,7 @@ export default function SignUpView() {
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           Already have an account?{' '}
-          <Link to="/" className="font-medium text-blue-600 hover:text-blue-500">
+          <Link to="/" className="font-medium text-purple-600 hover:text-purple-500">
             Sign in
           </Link>
         </p>
@@ -91,18 +91,18 @@ export default function SignUpView() {
                 id="terms"
                 name="terms"
                 type="checkbox"
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
               />
               <label htmlFor="terms" className="ml-2 block text-sm text-gray-700">
-                I agree to the <a href="#" className="text-blue-600 hover:text-blue-500">Terms</a> and{' '}
-                <a href="#" className="text-blue-600 hover:text-blue-500">Privacy Policy</a>
+                I agree to the <a href="#" className="text-purple-600 hover:text-purple-500">Terms</a> and{' '}
+                <a href="#" className="text-purple-600 hover:text-purple-500">Privacy Policy</a>
               </label>
             </div>
 
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
               >
                 Sign up
               </button>
