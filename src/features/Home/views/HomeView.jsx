@@ -21,6 +21,7 @@ const recentFiles = [
 export default function HomeView() {
   const [activeNav, setActiveNav] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
   const handleFileUpload = (e) => {
     const files = e.target.files;
@@ -29,27 +30,29 @@ export default function HomeView() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Mobile Sidebar Overlay */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        ></div>
-      )}
-
       {/* Sidebar */}
       <div 
-        className={`fixed lg:relative z-30 lg:z-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} w-64 bg-white shadow-md transition-all duration-300 ease-in-out h-full flex-shrink-0`}
+        className={`fixed lg:relative z-30 lg:z-0 ${!sidebarOpen ? 'hidden lg:block' : ''} ${collapsed ? 'w-16' : 'w-64'} bg-white shadow-md transition-all duration-300 ease-in-out h-full flex-shrink-0`}
         style={{ willChange: 'transform' }}
       >
         <div className="p-4 flex items-center justify-between border-b">
-          <h1 className="text-xl font-bold text-purple-600">StoreBox</h1>
-          <button 
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 rounded-lg hover:bg-gray-100 lg:hidden"
-          >
-            <FiMenu className="text-gray-600" />
-          </button>
+          {!collapsed && <h1 className="text-xl font-bold text-purple-600">StoreBox</h1>}
+          <div className="flex space-x-2">
+            <button 
+              onClick={() => setCollapsed(!collapsed)}
+              className="p-2 rounded-lg hover:bg-gray-100 hidden lg:block"
+              aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            >
+              <FiMenu className="text-gray-600" />
+            </button>
+            <button 
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 rounded-lg hover:bg-gray-100 lg:hidden"
+              aria-label="Toggle sidebar"
+            >
+              <FiMenu className="text-gray-600" />
+            </button>
+          </div>
         </div>
         
         <nav className="mt-6 overflow-y-auto" style={{ height: 'calc(100% - 80px)' }}>
@@ -60,28 +63,28 @@ export default function HomeView() {
                 setActiveNav(item.id);
                 if (window.innerWidth < 1024) setSidebarOpen(false);
               }}
-              className={`flex items-center w-full px-6 py-3 text-left ${
+              className={`flex items-center w-full ${collapsed ? 'justify-center px-3' : 'px-6'} py-3 text-left ${
                 activeNav === item.id
                   ? 'bg-purple-50 text-purple-600 border-r-4 border-purple-600'
                   : 'text-gray-600 hover:bg-gray-50'
               }`}
             >
               {item.icon}
-              <span className="text-sm font-medium ml-3">{item.label}</span>
+              {!collapsed && <span className="text-sm font-medium ml-3">{item.label}</span>}
             </button>
           ))}
         </nav>
       </div>
 
       {/* Main Content */}
-      <div className={`flex-1 flex flex-col overflow-hidden w-full transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}`}>
+      <div className={`flex-1 flex flex-col overflow-hidden w-full transition-all duration-300 ${sidebarOpen ? (collapsed ? 'lg:ml-16' : 'lg:ml-64') : 'lg:ml-0'}`}>
         {/* Top Bar */}
         <header className="bg-white shadow-sm sticky top-0 z-10">
           <div className="flex items-center justify-between p-3 sm:p-4">
             <div className="flex items-center">
               <button 
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="p-2 mr-2 text-gray-600 rounded-lg hover:bg-gray-100"
+                className="p-2 mr-2 text-gray-600 rounded-lg hover:bg-gray-100 lg:hidden"
                 aria-label="Toggle sidebar"
               >
                 <FiMenu className="text-xl" />
