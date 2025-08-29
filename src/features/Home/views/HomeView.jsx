@@ -63,7 +63,9 @@ export default function HomeView() {
         {/* Top Bar */}
         <header className="bg-white shadow-sm">
           <div className="flex items-center justify-between p-4">
-            <h2 className="text-xl font-semibold text-gray-800">Dashboard</h2>
+            <h2 className="text-xl font-semibold text-gray-800">
+              {navItems.find(item => item.id === activeNav)?.label || 'Dashboard'}
+            </h2>
             <div className="flex items-center space-x-4">
               <label className="cursor-pointer bg-purple-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-purple-700 transition-colors">
                 <FiUpload className="mr-2" />
@@ -79,66 +81,109 @@ export default function HomeView() {
           </div>
         </header>
 
-        {/* Recent Files Section */}
+        {/* Main Content Area */}
         <main className="flex-1 overflow-y-auto p-6">
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-lg font-medium text-gray-900">Recent Files</h3>
-              <button className="text-sm text-purple-600 hover:text-purple-700">View All</button>
+          {activeNav === 'dashboard' && (
+            <div className="space-y-6">
+              {/* Welcome Card */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h2 className="text-xl font-semibold text-gray-800 mb-2">Welcome to StoreBox</h2>
+                <p className="text-gray-600">Manage your files and documents in one place.</p>
+              </div>
+
+              {/* Recent Files Section */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-lg font-medium text-gray-900">Recent Files</h3>
+                  <button className="text-sm text-purple-600 hover:text-purple-700">View All</button>
+                </div>
+                
+                <div className="overflow-x-auto">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Name
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Type
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Size
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Last Modified
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {recentFiles.map((file) => (
+                        <tr key={file.id} className="hover:bg-gray-50 cursor-pointer">
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-md flex items-center justify-center">
+                                {file.type === 'image' ? (
+                                  <FiImage className="h-5 w-5 text-purple-600" />
+                                ) : (
+                                  <FiFile className="h-5 w-5 text-purple-600" />
+                                )}
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900">{file.name}</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 capitalize">
+                              {file.type}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {file.size}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {file.date}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
-            
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Name
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Type
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Size
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Last Modified
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {recentFiles.map((file) => (
-                    <tr key={file.id} className="hover:bg-gray-50 cursor-pointer">
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-md flex items-center justify-center">
-                            {file.type === 'image' ? (
-                              <FiImage className="h-5 w-5 text-purple-600" />
-                            ) : (
-                              <FiFile className="h-5 w-5 text-purple-600" />
-                            )}
-                          </div>
-                          <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">{file.name}</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 capitalize">
-                          {file.type}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {file.size}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {file.date}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          )}
+
+          {activeNav === 'documents' && (
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-semibold text-gray-800 mb-6">Documents</h2>
+              <p className="text-gray-600">Your documents will appear here.</p>
+              {/* Add document-specific content here */}
             </div>
-          </div>
+          )}
+
+          {activeNav === 'images' && (
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-semibold text-gray-800 mb-6">Images</h2>
+              <p className="text-gray-600">Your images will appear here.</p>
+              {/* Add image gallery content here */}
+            </div>
+          )}
+
+          {activeNav === 'media' && (
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-semibold text-gray-800 mb-6">Media</h2>
+              <p className="text-gray-600">Your media files will appear here.</p>
+              {/* Add media player or gallery here */}
+            </div>
+          )}
+
+          {activeNav === 'others' && (
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-semibold text-gray-800 mb-6">Other Files</h2>
+              <p className="text-gray-600">All other files will appear here.</p>
+              {/* Add other files content here */}
+            </div>
+          )}
         </main>
       </div>
     </div>
