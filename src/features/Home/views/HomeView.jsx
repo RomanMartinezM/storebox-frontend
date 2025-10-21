@@ -30,13 +30,11 @@ export default function HomeView() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar and Main Content Container */}
-      <div className="flex w-full">
-        {/* Sidebar */}
-        <div 
-          className={`fixed lg:relative z-30 lg:z-0 ${!sidebarOpen ? 'hidden lg:block' : ''} ${collapsed ? 'w-16' : 'w-64'} bg-white shadow-md transition-all duration-300 ease-in-out h-full flex-shrink-0`}
-          style={{ willChange: 'transform' }}
-        >
+      {/* Sidebar */}
+      <div 
+        className={`fixed top-0 left-0 bottom-0 z-30 lg:z-0 ${!sidebarOpen ? 'hidden lg:block' : ''} ${collapsed ? 'w-16' : 'w-64'} bg-white shadow-md transition-all duration-300 ease-in-out`}
+        style={{ willChange: 'transform' }}
+      >
         <div className="p-4 flex items-center justify-between border-b">
           {!collapsed && <h1 className="text-xl font-bold text-purple-600">StoreBox</h1>}
           <div className="flex space-x-2">
@@ -78,8 +76,8 @@ export default function HomeView() {
         </nav>
       </div>
 
-      {/* Main Content */}
-      <div className={`flex-1 flex flex-col overflow-hidden w-full transition-all duration-300 ${sidebarOpen ? (collapsed ? 'lg:ml-16' : 'lg:ml-64') : 'lg:ml-0'}`}>
+      {/* Main Content Wrapper */}
+      <div className={`flex-1 flex flex-col min-w-0 w-full ml-0 transition-all duration-300 ${sidebarOpen ? (collapsed ? 'lg:ml-16' : 'lg:ml-64') : 'lg:ml-0'}`} style={{ marginLeft: sidebarOpen ? (collapsed ? '4rem' : '16rem') : '0' }}>
         {/* Top Bar */}
         <header className="bg-white shadow-sm sticky top-0 z-10">
           <div className="flex items-center justify-between p-3 sm:p-4">
@@ -279,8 +277,7 @@ export default function HomeView() {
               {/* Add other files content here */}
             </div>
           )}
-          </main>
-        </div>
+        </main>
       </div>
     </div>
   );
