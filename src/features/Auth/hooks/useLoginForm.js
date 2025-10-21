@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { validateLogin } from '../utils/validation';
+import { validateLogin } from '@/features/Auth/utils/validation';
 
 export const useLoginForm = () => {
   const [formData, setFormData] = useState({

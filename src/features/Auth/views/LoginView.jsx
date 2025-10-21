@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useLoginForm } from '../hooks/useLoginForm';
-import FormInput from '../components/FormInput';
+import { useLoginForm } from '@/features/Auth/hooks/useLoginForm';
+import FormInput from '@/features/Auth/components/FormInput';
 
 export default function LoginView() {
   const { formData, errors, isLoading, handleChange, handleSubmit } = useLoginForm();

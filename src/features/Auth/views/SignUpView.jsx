@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useSignUpForm } from '../hooks/useSignUpForm';
-import FormInput from '../components/FormInput';
+import { useSignUpForm } from '@/features/Auth/hooks/useSignUpForm';
+import FormInput from '@/features/Auth/components/FormInput';
 
 export default function SignUpView() {
   const { formData, errors, handleChange, handleSubmit } = useSignUpForm();

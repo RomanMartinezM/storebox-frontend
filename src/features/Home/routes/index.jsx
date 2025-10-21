@@ -1,4 +1,4 @@
-import HomeView from "../views/HomeView";
+import HomeView from "@/features/Home/views/HomeView";
 
 const HomeRoutes = [
     {
