@@ -30,11 +30,13 @@ export default function HomeView() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar */}
-      <div 
-        className={`fixed lg:relative z-30 lg:z-0 ${!sidebarOpen ? 'hidden lg:block' : ''} ${collapsed ? 'w-16' : 'w-64'} bg-white shadow-md transition-all duration-300 ease-in-out h-full flex-shrink-0`}
-        style={{ willChange: 'transform' }}
-      >
+      {/* Sidebar and Main Content Container */}
+      <div className="flex w-full">
+        {/* Sidebar */}
+        <div 
+          className={`fixed lg:relative z-30 lg:z-0 ${!sidebarOpen ? 'hidden lg:block' : ''} ${collapsed ? 'w-16' : 'w-64'} bg-white shadow-md transition-all duration-300 ease-in-out h-full flex-shrink-0`}
+          style={{ willChange: 'transform' }}
+        >
         <div className="p-4 flex items-center justify-between border-b">
           {!collapsed && <h1 className="text-xl font-bold text-purple-600">StoreBox</h1>}
           <div className="flex space-x-2">
@@ -277,7 +279,8 @@ export default function HomeView() {
               {/* Add other files content here */}
             </div>
           )}
-        </main>
+          </main>
+        </div>
       </div>
     </div>
   );
