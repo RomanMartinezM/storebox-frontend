@@ -32,8 +32,7 @@ export default function HomeView() {
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
       <div 
-        className={`fixed top-0 left-0 bottom-0 z-30 lg:z-0 ${!sidebarOpen ? 'hidden lg:block' : ''} ${collapsed ? 'w-16' : 'w-64'} bg-white shadow-md transition-all duration-300 ease-in-out`}
-        style={{ willChange: 'transform' }}
+        className={`relative z-30 lg:z-0 ${!sidebarOpen ? 'hidden lg:block' : ''} ${collapsed ? 'w-16' : 'w-64'} bg-white shadow-md transition-all duration-300 ease-in-out`}
       >
         <div className="p-4 flex items-center justify-between border-b">
           {!collapsed && <h1 className="text-xl font-bold text-purple-600">StoreBox</h1>}
@@ -77,7 +76,7 @@ export default function HomeView() {
       </div>
 
       {/* Main Content Wrapper */}
-      <div className={`flex-1 flex flex-col min-w-0 w-full ml-0 transition-all duration-300 ${sidebarOpen ? (collapsed ? 'lg:ml-16' : 'lg:ml-64') : 'lg:ml-0'}`} style={{ marginLeft: sidebarOpen ? (collapsed ? '4rem' : '16rem') : '0' }}>
+      <div className="flex-1 flex flex-col min-w-0">
         {/* Top Bar */}
         <header className="bg-white shadow-sm sticky top-0 z-10">
           <div className="flex items-center justify-between p-3 sm:p-4">
