@@ -36,8 +36,6 @@ jobs:
           enable-commit-comment: false
           enable-commit-status: false
           enable-pull-request-comment: false
-          enable-commit-comment: false
-          enable-pull-request-comment: false
           skip-waiting: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
