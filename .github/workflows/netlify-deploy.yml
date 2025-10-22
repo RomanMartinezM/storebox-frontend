@@ -30,11 +30,15 @@ jobs:
         with:
           publish-dir: './dist'
           production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Disable all GitHub integrations
+          github-token: ''
           deploy-message: "Deploy from GitHub Actions"
           enable-commit-comment: false
           enable-commit-status: false
           enable-pull-request-comment: false
+          enable-commit-comment: false
+          enable-pull-request-comment: false
+          skip-waiting: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
